@@ -23,12 +23,13 @@ public class CatTest {
     @Test
     void getFoodCallsPredatorsEatMeat() throws Exception {
         Feline mockFeline = mock(Feline.class);
-        when(mockFeline.eatMeat()).thenReturn(List.of("Мыши", "Птицы"));
-        Cat cat = new Cat(mockFeline);
+        List<String> expectedFood = List.of("Мыши", "Птицы");
+        when(mockFeline.eatMeat()).thenReturn(expectedFood);
 
+        Cat cat = new Cat(mockFeline);
         List <String> actualFood = cat.getFood();
 
-        assertEquals(List.of("Мыши", "Птицы"), actualFood);
+        assertEquals(expectedFood, actualFood);
         verify(mockFeline, times(1)).eatMeat();
     }
 
